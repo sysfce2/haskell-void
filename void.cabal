@@ -13,7 +13,12 @@ copyright:     Copyright (C) 2008-2015 Edward A. Kmett
 synopsis:      A Haskell 98 logically uninhabited data type
 description:   A Haskell 98 logically uninhabited data type, used to indicate that a given term should not exist.
 build-type:    Simple
-tested-with:   GHC==9.2.2
+tested-with:   GHC==9.12.2
+             , GHC==9.10.3
+             , GHC==9.8.4
+             , GHC==9.6.6
+             , GHC==9.4.8
+             , GHC==9.2.8
              , GHC==9.0.2
              , GHC==8.10.7
              , GHC==8.8.4
@@ -21,12 +26,6 @@ tested-with:   GHC==9.2.2
              , GHC==8.4.4
              , GHC==8.2.2
              , GHC==8.0.2
-             , GHC==7.10.3
-             , GHC==7.8.4
-             , GHC==7.6.3
-             , GHC==7.4.2
-             , GHC==7.2.2
-             , GHC==7.0.4
 
 extra-source-files:
   .ghci
@@ -37,7 +36,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: git://github.com/ekmett/void.git
+  location: https://github.com/ekmett/void.git
 
 flag safe
   manual: True
@@ -55,22 +54,3 @@ library
 
   if flag(safe)
     cpp-options: -DSAFE
-
-  if !impl(ghc>=7.9)
-    hs-source-dirs: src-old
-    exposed-modules: Data.Void
-    build-depends:
-      deepseq    >= 1.1 && < 1.5,
-      hashable   >= 1.1,
-      semigroups >= 0.8.2,
-      template-haskell >=2.5.0.0 && <2.11
-
-    if impl(ghc)
-      other-extensions: DeriveDataTypeable
-      cpp-options: -DLANGUAGE_DeriveDataTypeable
-
-    if impl(ghc >= 7.2)
-      other-extensions: StandaloneDeriving
-      -- other-extensions: DeriveGeneric isn't known to cabal yet
-      cpp-options: -DLANGUAGE_DeriveGeneric
-      build-depends: ghc-prim

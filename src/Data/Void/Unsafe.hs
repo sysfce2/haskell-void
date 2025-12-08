@@ -1,11 +1,9 @@
 {-# LANGUAGE CPP #-}
-#if !defined(SAFE) && defined(__GLASGOW_HASKELL__) && __GLASGOW_HASKELL__ >= 704
+#if !defined(SAFE) && defined(__GLASGOW_HASKELL__)
 #define UNSAFE
 {-# LANGUAGE Unsafe #-}
 #endif
-#if __GLASGOW_HASKELL__ >= 800
 {-# OPTIONS_GHC -Wno-redundant-constraints #-} -- they aren't redundant!
-#endif
 -----------------------------------------------------------------------------
 -- |
 -- Copyright   :  (C) 2008-2015 Edward Kmett
